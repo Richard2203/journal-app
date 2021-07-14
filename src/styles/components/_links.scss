@@ -1,0 +1,10 @@
+.link {
+	text-decoration: none;
+	color: darken($color: $light-blue, $amount: 40);
+	margin: 0px 8px;
+	display: inline;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}

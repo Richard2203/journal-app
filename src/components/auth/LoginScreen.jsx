@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const LoginScreen = () => {
 	return (
-		<div className="auth__box-container">
+		<>
 			<h3 className="auth__title">Login</h3>
 			<form>
 				<div className="form-control">
@@ -53,7 +54,11 @@ const LoginScreen = () => {
 					<b>Sign in with google</b>
 				</p>
 			</div>
-		</div>
+
+			<Link to="/auth/register" className="link">
+				Create a new account
+			</Link>
+		</>
 	);
 };
 
