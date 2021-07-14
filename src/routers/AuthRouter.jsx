@@ -6,7 +6,7 @@ import RegisterScreen from '../components/auth/RegisterScreen';
 const AuthRouter = () => {
 	return (
 		<div className="auth__main">
-			<div className="auth__box-container">
+			<div>
 				<Switch>
 					{/* el path debe ser exacto para poderse mostrar
                 el componente correspondiente a su path, no habra
