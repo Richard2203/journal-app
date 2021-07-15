@@ -1,0 +1,110 @@
+.journal__sidebar {
+	background-color: $black-blue;
+	color: $white;
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	padding: 17px 15px;
+	width: 350px;
+
+	&-navbar {
+		display: flex;
+		justify-content: space-between;
+
+		& h3 {
+			display: flex;
+		}
+		& button {
+			margin: 0;
+		}
+	}
+}
+
+.journal__new-entry {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-top: 30px;
+	width: 100%;
+}
+
+.icon path {
+	fill: transparent;
+	stroke-width: 10;
+	stroke: #31e8ff;
+}
+
+.icon.moon {
+	width: 25px;
+	margin: 0 5px;
+}
+
+.icon.moon svg {
+	enable-background: new 0 0 312.812 312.812;
+}
+
+.icon.moon path {
+	stroke-dasharray: 1560;
+	stroke-dashoffset: 0;
+}
+
+.icon.moon:hover path {
+	animation: animate-moon 2s linear forwards;
+}
+
+@keyframes animate-moon {
+	0% {
+		stroke-dashoffset: 0;
+	}
+	40% {
+		stroke-dashoffset: 1560;
+	}
+
+	80% {
+		stroke-dashoffset: 3120;
+		fill: transparent;
+	}
+
+	100% {
+		stroke-dashoffset: 3120;
+		fill: #31e8ff;
+	}
+}
+
+.icon.calendar {
+	width: 150px;
+	cursor: pointer;
+}
+
+.icon.calendar svg {
+	enable-background: new 0 0 512.001 512.001;
+}
+
+.icon.calendar path {
+	stroke-dasharray: 1905;
+	stroke-dashoffset: 0;
+}
+
+.icon.calendar:hover path {
+	animation: animate-calendar 2s linear forwards;
+}
+
+@keyframes animate-calendar {
+	0% {
+		stroke-dashoffset: 0;
+	}
+	40% {
+		stroke-dashoffset: 1905;
+	}
+
+	80% {
+		stroke-dashoffset: 3810;
+		fill: transparent;
+	}
+
+	100% {
+		stroke-dashoffset: 3810;
+		fill: #31e8ff;
+	}
+}
