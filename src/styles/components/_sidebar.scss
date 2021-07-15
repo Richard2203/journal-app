@@ -5,7 +5,7 @@
 	flex-direction: column;
 	height: 100vh;
 	padding: 17px 15px;
-	width: 350px;
+	min-width: 350px;
 
 	&-navbar {
 		display: flex;
