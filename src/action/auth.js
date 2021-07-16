@@ -1,4 +1,5 @@
 import { types } from '../types/types';
+import { firebase, googleAuthProvider } from '../firebase/firebase-config';
 
 //? La manera de manejar los dispatch es centralizar en un archivo las acciones
 //? que existen
@@ -12,6 +13,21 @@ export const startLoginEmailPassword = (email, password) => {
 		setTimeout(() => {
 			dispatch(login(123, 'pedro'));
 		}, 3500);
+	};
+};
+
+// el login con un proveedor es asincrono por lo cual debemos retornar
+// un callback
+export const startGoogleLogin = () => {
+	return (dispatch) => {
+		console.log('dwdwd');
+		// retorna una promesa por lo cual lo manejaremos con then
+		firebase
+			.auth()
+			.signInWithPopup(googleAuthProvider)
+			.then(({ user }) => {
+				dispatch(login(user.uid, user.displayName));
+			});
 	};
 };
 
