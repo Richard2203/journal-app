@@ -1,0 +1,4 @@
+Una libreria para manejo de middleware
+    https://www.npmjs.com/package/redux-thunk
+Se instala con el comando:
+    npm i redux-thunk

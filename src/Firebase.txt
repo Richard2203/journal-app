@@ -1,0 +1,2 @@
+Instalacion:
+    npm i firebase
