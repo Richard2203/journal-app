@@ -1,0 +1,23 @@
+es un contenedor del estado de nuestra aplicacion, actuando como una forma
+de saber donde se encuentra la informacion en todo momento; tambien establece
+cambios en una sola via de tal modo que se evitan cambios accidentales
+
+
+Ciclo de vida de Redux :
+    Store-State: ubicacion de la informacion
+    View: utiliza la informacion de Store
+    Action: envia informacion y el tipo de accion
+    Dispatcher: gestiona el "Action" y lo envia a su correspondiente
+        hook Reducer, tambien analiza si la tarea es sincrona o asincrona
+        -Middlewares: ejecuta acciones asincronas llamando a la API
+        -API: procesa peticiones asincronas y se las regresa al Middleware
+
+
+Enlace documental de Redux general:
+    https://es.redux.js.org/
+
+Enlace documental de Redux en React:
+    https://react-redux.js.org/
+
+    Instalacion de Redux
+        npm i react-redux redux
