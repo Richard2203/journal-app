@@ -20,7 +20,6 @@ export const startLoginEmailPassword = (email, password) => {
 // un callback
 export const startGoogleLogin = () => {
 	return (dispatch) => {
-		console.log('dwdwd');
 		// retorna una promesa por lo cual lo manejaremos con then
 		firebase
 			.auth()

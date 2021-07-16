@@ -28,7 +28,9 @@ const LoginScreen = () => {
 
 	const handleLoginGoogle = () => {
 		// al dispatch le enviaremos la funcion que realiza la autenticacion
-		// con google, esta funcion esta dentro del archivo auth
+		// con google, esta funcion esta dentro del archivo auth. IMPORTANTE
+		// al ser una funcion asincrona debe ejecutarse y para ello siempre
+		// se coloca con parentesis
 		dispatch(startGoogleLogin());
 	};
 
