@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from '../../hooks/useForm';
 import validator from 'validator';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { removeError, setError } from '../../action/ui';
 
 const RegisterScreen = () => {
@@ -10,6 +10,13 @@ const RegisterScreen = () => {
 	// sirve para retornar una funcion que recibe un metodo mediante el cual
 	// tendremos acceso a Dispatch enviandole informacion
 	const dispatch = useDispatch();
+
+	// useSelector() recibe un callback y ese callback recibe por argumento
+	// "state" que contiene todos los objetos empleados en Redux, en este
+	// caso nos proveera: ui y auth.
+	// aplicando desestructuracion para obtener la propieadad "msgError" retornado
+	// de state.ui
+	const { msgError } = useSelector((state) => state.ui);
 
 	const [formValue, hadleInputChange] = useForm({
 		name: '',
@@ -48,9 +55,11 @@ const RegisterScreen = () => {
 	return (
 		<>
 			<h3 className="auth__title">Register</h3>
-			<div className="Form__valid-alert">
-				<span>Hola</span>
-			</div>
+			{msgError && (
+				<div className="Form__valid-alert">
+					<span>{msgError}</span>
+				</div>
+			)}
 
 			<form onSubmit={handleRegister}>
 				<div className="form-control">
