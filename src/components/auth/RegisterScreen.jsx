@@ -4,6 +4,7 @@ import { useForm } from '../../hooks/useForm';
 import validator from 'validator';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeError, setError } from '../../action/ui';
+import { startRegisterUser } from '../../action/auth';
 
 const RegisterScreen = () => {
 	// el custom hook useDispatch proviene de redux y
@@ -29,9 +30,7 @@ const RegisterScreen = () => {
 
 	const handleRegister = (e) => {
 		e.preventDefault();
-		if (isFormValid()) {
-			console.log(name, email, password, passwordConfirm);
-		}
+		if (isFormValid()) dispatch(startRegisterUser(email, password, name));
 	};
 
 	const isFormValid = () => {

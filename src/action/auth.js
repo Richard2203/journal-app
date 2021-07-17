@@ -16,6 +16,28 @@ export const startLoginEmailPassword = (email, password) => {
 	};
 };
 
+export const startRegisterUser = (email, password, name) => {
+	return (dispatch) => {
+		// la funcion createUserWithEmailAndPassword(email,password)
+		// crea un usuario en firebase con las credenciales proporcionadas
+		// por el usuari; y retorna una promesa
+		firebase
+			.auth()
+			.createUserWithEmailAndPassword(email, password)
+			.then(async ({ user }) => {
+				// usamos el metodo updateProfile y le enviamos un nombre
+				// para poder asignar el nombre del usuario a la cuenta
+				await user.updateProfile({ displayName: name });
+
+				// este dispatch() registra el usuario en nuestro Redux
+				dispatch(login(user.uid, user.displayName));
+			})
+			.catch((e) => {
+				console.log(e);
+			});
+	};
+};
+
 // el login con un proveedor es asincrono por lo cual debemos retornar
 // un callback
 export const startGoogleLogin = () => {
