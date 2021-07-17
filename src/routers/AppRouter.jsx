@@ -1,16 +1,13 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
-import {
-	HashRouter as Router,
-	Switch,
-	Route,
-	Redirect,
-} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { HashRouter as Router, Switch, Redirect } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+
 import { firebase } from '../firebase/firebase-config';
 import JournalScreen from '../components/journal/JournalScreen';
 import AuthRouter from './AuthRouter';
 import { login } from '../action/auth';
+import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublicRoute';
 
 const AppRouter = () => {
 	const dispatch = useDispatch();
@@ -44,12 +41,23 @@ const AppRouter = () => {
 		<Router>
 			<div>
 				<Switch>
-					{/* el primero no contiene el exact puesto que tendra rutas
-					hijas y por ende habra variaciones */}
-					<Route path="/auth" component={AuthRouter} />
 					{/* contiene exact puesto que sera el unico path que 
 					renderizara el componente JournalScreen*/}
-					<Route exact path="/" component={JournalScreen} />
+					<PrivateRoute
+						isAuthenticated={isLoggedIn}
+						exact
+						path="/"
+						component={JournalScreen}
+					/>
+
+					{/* no contiene el exact puesto que tendra rutas
+					hijas y por ende habra variaciones */}
+					<PublicRoute
+						isAuthenticated={isLoggedIn}
+						path="/auth"
+						component={AuthRouter}
+					/>
+
 					<Redirect to="/auth/login" />
 				</Switch>
 			</div>
