@@ -1,14 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from '../../hooks/useForm';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { startGoogleLogin, startLoginEmailPassword } from '../../action/auth';
 
 const LoginScreen = () => {
 	const [formValues, handleInputChange] = useForm({
-		email: 'alpaca@outlook.com',
-		password: 'alpaca123',
+		email: '',
+		password: '',
 	});
+
+	const { loading } = useSelector((state) => state.ui);
 
 	// el custom hook useDispatch proviene de redux y
 	// sirve para retornar una funcion que recibe un metodo mediante el cual
@@ -68,7 +70,11 @@ const LoginScreen = () => {
 					</label>
 				</div>
 
-				<button type="submit" className="btn cursor btn-block">
+				<button
+					type="submit"
+					className="btn cursor btn-block"
+					disabled={loading}
+				>
 					Login
 				</button>
 			</form>

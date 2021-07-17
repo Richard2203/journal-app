@@ -4,4 +4,7 @@ export const types = {
 
 	uiSetError: '[UI] ErrorFormValues',
 	uiRemoveError: '[UI] ErrorRemoveFormValues',
+
+	uiStartLoading: '[UI] Start Loading',
+	uiFinishLoading: '[UI] Finish Loading',
 };

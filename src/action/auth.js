@@ -1,5 +1,6 @@
 import { types } from '../types/types';
 import { firebase, googleAuthProvider } from '../firebase/firebase-config';
+import { startLoading, finishLoading } from './ui';
 
 //? La manera de manejar los dispatch es centralizar en un archivo las acciones
 //? que existen
@@ -7,6 +8,8 @@ import { firebase, googleAuthProvider } from '../firebase/firebase-config';
 export const startLoginEmailPassword = (email, password) => {
 	// el DOM ofrecera el dispatch y entonces lo ejecutara
 	return (dispatch) => {
+		dispatch(startLoading());
+
 		// signInWithEmailAndPassword(email, password) recibe las credenciales
 		// y las compara con las existentes en la BD; retorna una promesa
 		firebase
@@ -15,8 +18,13 @@ export const startLoginEmailPassword = (email, password) => {
 			.then(({ user }) => {
 				// este dispatch actualiza el Redux
 				dispatch(login(user.uid, user.displayName));
+
+				dispatch(finishLoading());
 			})
-			.catch((e) => console.log(e));
+			.catch((e) => {
+				console.log(e);
+				dispatch(finishLoading());
+			});
 	};
 };
 
