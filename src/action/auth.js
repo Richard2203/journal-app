@@ -4,15 +4,19 @@ import { firebase, googleAuthProvider } from '../firebase/firebase-config';
 //? La manera de manejar los dispatch es centralizar en un archivo las acciones
 //? que existen
 
-// creando un metodo asincrono para verificar el funcionamiento de los middleware;
-// su implementancion en codigo es igual al metodo sincrono
 export const startLoginEmailPassword = (email, password) => {
-	// al aplicar el retorno el middleware ejecutara el callback
 	// el DOM ofrecera el dispatch y entonces lo ejecutara
 	return (dispatch) => {
-		setTimeout(() => {
-			dispatch(login(123, 'pedro'));
-		}, 3500);
+		// signInWithEmailAndPassword(email, password) recibe las credenciales
+		// y las compara con las existentes en la BD; retorna una promesa
+		firebase
+			.auth()
+			.signInWithEmailAndPassword(email, password)
+			.then(({ user }) => {
+				// este dispatch actualiza el Redux
+				dispatch(login(user.uid, user.displayName));
+			})
+			.catch((e) => console.log(e));
 	};
 };
 
