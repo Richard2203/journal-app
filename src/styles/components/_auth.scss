@@ -17,6 +17,16 @@
 	width: auto;
 }
 
+.Form__valid-alert {
+	width: 100%;
+	height: 45px;
+	background-color: red;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: $radius;
+}
+
 .auth__title {
 	// darken es una funcion de SASS que permite oscurecer un color
 	// recibe el dolor y un int que indica la oscuridad del color

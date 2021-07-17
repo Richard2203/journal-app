@@ -1,0 +1,2 @@
+La libreria "validator" nos proporciona diversas formas de validacion
+    npm i validator
