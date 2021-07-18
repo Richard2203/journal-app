@@ -3,12 +3,20 @@ import React from 'react';
 // se instala con el comando
 // 	npm install moment --save
 import moment from 'moment';
+import { useDispatch } from 'react-redux';
+import { activeNote } from '../../action/notes';
 
 const JournalEntry = ({ id, date, title, body, url }) => {
 	const dateMoment = moment(date);
 
+	const dispatch = useDispatch();
+
+	const handleEntryClick = () => {
+		dispatch(activeNote(id, { date, title, body, url }));
+	};
+
 	return (
-		<div className="journal__entry cursor">
+		<div className="journal__entry cursor" onClick={handleEntryClick}>
 			{/* en React la etiqueta style se maneja pasando las propieades
             como si de un objeto se tratara */}
 			{url && (

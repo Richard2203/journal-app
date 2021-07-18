@@ -3,8 +3,10 @@ import { useState } from 'react';
 export const useForm = (initialState = {}) => {
 	const [Value, setValue] = useState(initialState);
 
-	const reset = () => {
-		setValue(Value);
+	// si no se le envia algo a resetear entonces volvera
+	// al estado original
+	const reset = (newFormState = initialState) => {
+		setValue(newFormState);
 	};
 
 	const handleInput = ({ target }) => {
