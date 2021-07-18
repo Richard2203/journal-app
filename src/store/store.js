@@ -1,6 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { authReducer } from '../reducers/authReducer';
+import { notesReducer } from '../reducers/notesReducer';
 import { uiReducer } from '../reducers/uiReducer';
 
 // nos permite agregar la configuracion de Redux Tools dev
@@ -17,6 +18,7 @@ const composeEnhancers =
 const reducers = combineReducers({
 	auth: authReducer,
 	ui: uiReducer,
+	notes: notesReducer,
 });
 
 // createStore() recibe los reducers de la aplicacion y el segundo argumento

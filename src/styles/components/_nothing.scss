@@ -10,7 +10,12 @@
 	height: 100vh;
 	width: 100%;
 
-	p {
+	& p {
 		text-align: center;
+	}
+
+	& .icon.moon {
+		width: 200px;
+		margin: 17px;
 	}
 }
