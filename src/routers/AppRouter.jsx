@@ -8,8 +8,7 @@ import AuthRouter from './AuthRouter';
 import { login } from '../action/auth';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
-import { loadNotes } from '../helpers/loadNotes';
-import { setNotes } from '../action/notes';
+import { startLoadingNotes } from '../action/notes';
 
 const AppRouter = () => {
 	const dispatch = useDispatch();
@@ -30,13 +29,8 @@ const AppRouter = () => {
 				dispatch(login(user.uid, user.displayName));
 				setIsLoggedIn(true);
 
-				// -Disparo el metodo loadNotes para cargar las notas del usuario
-				//  se hace aqui por ser el primer lugar donde se obtiene el user.
-				// -Se emplea await puesto que loadNotes retorna una promesa
-				const notes = await loadNotes(user.uid);
-
 				// enviando al Redux las notas cargadas de firebase
-				dispatch(setNotes(notes));
+				dispatch(startLoadingNotes(user.uid));
 			} else setIsLoggedIn(false);
 
 			setChecking(false);
