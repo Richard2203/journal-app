@@ -5,7 +5,7 @@ import NotesScreen from '../notes/NotesScreen';
 import { useSelector } from 'react-redux';
 
 const JournalScreen = () => {
-	const { active } = useSelector((state) => state.notes);
+	const { active = false } = useSelector((state) => state.notes);
 	return (
 		<div className="journal__main-content">
 			<SideBar />
