@@ -16,7 +16,10 @@ const JournalEntry = ({ id, date, title, body, url }) => {
 	};
 
 	return (
-		<div className="journal__entry cursor" onClick={handleEntryClick}>
+		<div
+			className="journal__entry cursor animate__animated animate__fadeInDown"
+			onClick={handleEntryClick}
+		>
 			{/* en React la etiqueta style se maneja pasando las propieades
             como si de un objeto se tratara */}
 			{url && (
