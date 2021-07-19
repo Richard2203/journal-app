@@ -17,6 +17,7 @@ const NotesAppBar = () => {
 		// "file" y controlarlo en esta funcion
 		refFileInput.current.click();
 	};
+	
 	const handleFileChange = (e) => {
 		const file = e.target.files[0];
 		file && dispatch(startUpLoading(file));

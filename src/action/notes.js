@@ -94,8 +94,23 @@ export const startUpLoading = (file) => {
 	return async (dispatch, getState) => {
 		const { active: noteActive } = getState().notes;
 
-		const fileUp = await fileUpLoad(file);
+		// muestra la ventana pero bloquea la opcion de cerrarla
+		Swal.fire({
+			title: 'Uploading',
+			text: 'please wait',
+			allowOutsideClick: false,
+			showConfirmButton: false,
+			willOpen: () => {
+				Swal.showLoading();
+			},
+		});
 
-		console.log(fileUp);
+		const fileUp = await fileUpLoad(file);
+		noteActive.url = fileUp;
+
+		dispatch(startSaveNote(noteActive));
+
+		// cierra a ventana Swal
+		Swal.close();
 	};
 };

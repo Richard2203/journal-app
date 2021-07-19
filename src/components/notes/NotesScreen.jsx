@@ -43,10 +43,7 @@ const NotesScreen = () => {
 			<div className="notes__content">
 				{note.url && (
 					<div className="notes__images">
-						<img
-							src="https://images.alphacoders.com/111/thumb-1920-1114657.jpg"
-							alt="Demon Slayer"
-						/>
+						<img src={`${note.url}`} alt="Demon Slayer" />
 					</div>
 				)}
 
