@@ -7,7 +7,7 @@ export const startNewNote = () => {
 	// y el segundo nos permite obtener el state
 	return async (dispatch, getState) => {
 		// obtenemos la propiedad ui del objeto auth
-		const state = getState().auth.uid;
+		const { uid } = getState().auth;
 
 		const newNote = {
 			title: '',
@@ -22,9 +22,7 @@ export const startNewNote = () => {
 		// de la bd.
 		// recibe el path donde guardara la nueva informacion; para agregar un
 		// nuevo elemento se emplea el metodo add(<dato>)
-		const dbRef = await db
-			.collection(`${state}/journal/notes`)
-			.add(newNote);
+		const dbRef = await db.collection(`${uid}/journal/notes`).add(newNote);
 
 		// enviando a dispatche la nueva nota, le pasamos el id y el objeto
 		// de la nueva nota
@@ -53,3 +51,27 @@ export const setNotes = (notes) => ({
 	type: types.notesLoad,
 	payload: notes,
 });
+
+export const startSaveNote = (note) => {
+	return async (dispatch, getState) => {
+		const { uid } = getState().auth;
+
+		// firebase no permite guardar campos "undefined" por lo cual indicamos
+		// si nuestro objeto "note" tiene "undefined" en la propieadad "url"
+		// entonces lo elimina
+		!note.url && delete note.url;
+
+		// hacemos una copia de "note" para evitar modificar
+		// accidentalmente "note" puesto que los objeto se manejan por
+		// referencia
+		const noteToFirestore = { ...note };
+
+		// con "delete" borramos la propiedad id del objeto noteToFirestore
+		delete noteToFirestore.id;
+
+		// .doc() nos devuelve una referencia al documento para poderlo manipular
+		// este metodo recibe un path
+		// .update() recibe un objeto con la informacion a modificar
+		await db.doc(`${uid}/journal/notes/${note.id}`).update(noteToFirestore);
+	};
+};
