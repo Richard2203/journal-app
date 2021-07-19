@@ -1,7 +1,11 @@
 import React from 'react';
 import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { startSaveNote, startUpLoading } from '../../action/notes';
+import {
+	startDeleting,
+	startSaveNote,
+	startUpLoading,
+} from '../../action/notes';
 
 const NotesAppBar = () => {
 	const dispatch = useDispatch();
@@ -17,10 +21,14 @@ const NotesAppBar = () => {
 		// "file" y controlarlo en esta funcion
 		refFileInput.current.click();
 	};
-	
+
 	const handleFileChange = (e) => {
 		const file = e.target.files[0];
 		file && dispatch(startUpLoading(file));
+	};
+
+	const handleDeleteNote = () => {
+		dispatch(startDeleting(note.id));
 	};
 
 	return (
@@ -35,6 +43,9 @@ const NotesAppBar = () => {
 					onChange={handleFileChange}
 					style={{ display: 'none' }}
 				/>
+				<button className="btn cursor" onClick={handleDeleteNote}>
+					Borrar Nota
+				</button>
 				<button className="btn cursor" onClick={handlePictureClick}>
 					Picture
 				</button>
