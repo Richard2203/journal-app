@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2';
 import { db } from '../firebase/firebase-config';
 import { loadNotes } from '../helpers/loadNotes';
 import { types } from '../types/types';
@@ -72,6 +73,18 @@ export const startSaveNote = (note) => {
 		// .doc() nos devuelve una referencia al documento para poderlo manipular
 		// este metodo recibe un path
 		// .update() recibe un objeto con la informacion a modificar
-		await db.doc(`${uid}/journal/notes/${note.id}`).update(noteToFirestore);
+		await db
+			.doc(`${uid}/journal/notes/${note.id}`)
+			.update(noteToFirestore)
+			.catch((e) => Swal.fire('Not Saved', e, 1500));
+
+		// enviando la nota actualizada a Redux
+		dispatch(refreshNote(note.id, note));
+		Swal.fire('Saved', note.title, 'success');
 	};
 };
+
+export const refreshNote = (id, note) => ({
+	type: types.notesUpdated,
+	payload: { id, note: { id, ...note } },
+});
