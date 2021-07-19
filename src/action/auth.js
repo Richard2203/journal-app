@@ -2,6 +2,7 @@ import Swal from 'sweetalert2';
 import { types } from '../types/types';
 import { firebase, googleAuthProvider } from '../firebase/firebase-config';
 import { startLoading, finishLoading } from './ui';
+import { noteLogout } from './notes';
 
 //? La manera de manejar los dispatch es centralizar en un archivo las acciones
 //? que existen
@@ -83,7 +84,12 @@ export const startLogout = () => {
 	return async (dispatch) => {
 		// esperamos a que firebase termine de hacer logout del usuario
 		await firebase.auth().signOut();
+
+		// purgamos la sesion del usuario
 		dispatch(logout());
+
+		// purgando la informacion de las notas del usuario
+		dispatch(noteLogout());
 	};
 };
 
