@@ -17,20 +17,44 @@ import {
 	startLoadingNotes,
 	startNewNote,
 	startSaveNote,
+	startUpLoading,
 } from '../../action/notes';
 import { db } from '../../firebase/firebase-config';
 import { types } from '../../types/types';
+
+// mediante el callback podemos indicar que datos va a retornar
+// en este caso, indicamos que retornara una propiedad fileUpLoad de tipo funcion
+// y esa funcion retorna una Promesa con la url (se puede colocar unicamente la
+// url pero colocamos que es promesa para que la implementacion sea identica a
+// a lo que retorna fileUpLoad), de haber mas propieades se pueden colocar
+jest.mock('../../helpers/fileUpLoad', () => {
+	return {
+		fileUpLoad: () => {
+			return Promise.resolve(
+				'https://this-represents-an-url.com/photo.png'
+			);
+		},
+	};
+});
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
 
 const initState = {
 	auth: { uid: '[Testing uid] rj893jr23rj239r' },
+	notes: {
+		active: { id: 'ZVVtoKe2AGUIglvgWygJ', title: 'hola', body: 'mudo' },
+	},
 };
+
+// en la prueba notes -> startSaveNote ejecuta la funcion scrollTo pero no esta
+// definida por lo cual se debe crear mediante jest.fn() asignado a global.scrollTo
+global.scrollTo = jest.fn();
 
 // mocksStore recibe objetos para establecer el store; en este caso
 // el store contiene el objeto: auth
 let store = mockStore(initState);
+
 describe('Pruebas en el action notes', () => {
 	// Para poder realizar pruebas en redux store se emplean mocks
 	//      npm install redux-mock-store --save-dev
@@ -105,16 +129,38 @@ describe('Pruebas en el action notes', () => {
 			title: 'nueva nota',
 			body: 'este es el cuerpo de la nueva nota',
 		};
+
 		await store.dispatch(startSaveNote(note));
 
 		const action = store.getActions();
 
 		expect(action[0].type).toBe(types.notesUpdated);
 
-		const docRef = db
-			.doc(`${initState.auth.uid}/journal/notes/${note.id}`)
+		// get() retorna el doc con las propieades
+		const docRef = await db
+			.doc(
+				'/[Testing uid] rj893jr23rj239r/journal/notes/ZVVtoKe2AGUIglvgWygJ'
+			)
 			.get();
 
+		// data() retorna las propieades del docRef proveniente de firebase
 		expect(docRef.data().title).toBe(note.title);
+	});
+
+	test('startUpLoading debe de actualizar el url del entry', async () => {
+		const file = [];
+		await store.dispatch(startUpLoading(file));
+
+		// get() retorna el doc con las propieades
+		const docRef = await db
+			.doc(
+				'/[Testing uid] rj893jr23rj239r/journal/notes/ZVVtoKe2AGUIglvgWygJ'
+			)
+			.get();
+
+		// data() retorna las propieades del docRef proveniente de firebase
+		expect(docRef.data().url).toBe(
+			'https://this-represents-an-url.com/photo.png'
+		);
 	});
 });
