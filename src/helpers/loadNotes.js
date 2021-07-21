@@ -2,7 +2,10 @@ import { db } from '../firebase/firebase-config';
 
 export const loadNotes = async (uid) => {
 	// get() obtiene todo lo contenido en el documento
-	const notesSnap = await db.collection(`${uid}/journal/notes`).get();
+	const notesSnap = await db
+		.collection(`${uid}/journal/notes`)
+		.get()
+		.catch((e) => console.log(e));
 	const notes = [];
 
 	// empleando forEach para modificar notesSnap y obtener la informacion
