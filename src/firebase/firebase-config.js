@@ -13,11 +13,23 @@ const firebaseConfig = {
 	measurementId: 'G-P0JYGRDKVE',
 };
 
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-// firebase.analytics();
+const firebaseConfigTesting = {
+	apiKey: 'AIzaSyACPvxrcJSiefmMxJVIfnRj-zPize0XKXM',
+	authDomain: 'journal-app-testing-d9c71.firebaseapp.com',
+	projectId: 'journal-app-testing-d9c71',
+	storageBucket: 'journal-app-testing-d9c71.appspot.com',
+	messagingSenderId: '461872047946',
+	appId: '1:461872047946:web:8070da142ffe5f67c8c3b3',
+};
 
-// retorna un bd de firebase firestore
+// tenemos dos BD puesto que una se emplea para desarrollo y finalmente producion
+// mientras que la otra se emplea para pruebas
+if (process.env.NODE_ENV === 'development')
+	firebase.initializeApp(firebaseConfig);
+else if (process.env.NODE_ENV === 'test')
+	firebase.initializeApp(firebaseConfigTesting);
+
+// firebase.firestore() retorna un bd de firebase firestore
 const db = firebase.firestore();
 
 // creando una instancia de firebase para menajar autenticacion con google.
