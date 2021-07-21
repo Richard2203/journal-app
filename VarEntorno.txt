@@ -1,0 +1,8 @@
+#las variables de entorno de React deben ser en mayusculas e inicia con REACT__APP
+
+Se manejan dos tipos:
+    .env.development
+    .env.test
+ambos deben contener variables con el mismo nombre y segun la compilacion
+se tomara uno u otro valor, es decir si es compilacion test entonces tomara 
+los valores de .env.test

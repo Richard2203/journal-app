@@ -2,32 +2,22 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
-// este objeto es proveido por google firebase
+// este objeto y sus valores es proveido por google firebase
+// los valores fueron llevados a variables de entorno para mas seguridad
+// si el proyecto se ejecuta en Test tomara los valores de .env.test sino tomara
+// los valores de .env.development
 const firebaseConfig = {
-	apiKey: 'AIzaSyBwwcjxZaKhF0emoi6TOQ2WNJpKZXOc_lw',
-	authDomain: 'journal-app-5d467.firebaseapp.com',
-	projectId: 'journal-app-5d467',
-	storageBucket: 'journal-app-5d467.appspot.com',
-	messagingSenderId: '715365077289',
-	appId: '1:715365077289:web:77014e6a7f7699e2032738',
-	measurementId: 'G-P0JYGRDKVE',
+	apiKey: process.env.REACT_APP_API_KEY,
+	authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+	projectId: process.env.REACT_APP_PROJECT_ID,
+	storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+	messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+	appId: process.env.REACT_APP_APP_ID,
+	measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 };
 
-const firebaseConfigTesting = {
-	apiKey: 'AIzaSyACPvxrcJSiefmMxJVIfnRj-zPize0XKXM',
-	authDomain: 'journal-app-testing-d9c71.firebaseapp.com',
-	projectId: 'journal-app-testing-d9c71',
-	storageBucket: 'journal-app-testing-d9c71.appspot.com',
-	messagingSenderId: '461872047946',
-	appId: '1:461872047946:web:8070da142ffe5f67c8c3b3',
-};
-
-// tenemos dos BD puesto que una se emplea para desarrollo y finalmente producion
-// mientras que la otra se emplea para pruebas
-if (process.env.NODE_ENV === 'development')
-	firebase.initializeApp(firebaseConfig);
-else if (process.env.NODE_ENV === 'test')
-	firebase.initializeApp(firebaseConfigTesting);
+// inicializando la BD
+firebase.initializeApp(firebaseConfig);
 
 // firebase.firestore() retorna un bd de firebase firestore
 const db = firebase.firestore();
