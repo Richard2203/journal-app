@@ -33,7 +33,7 @@ describe('Pruebas en el helper fileUpLoad', () => {
 		// creando una nueva instancia del archivo File con nombre "rem.png"
 		// de este modo podemos manipular la imagen como un objeto
 		// y pasarla como argumento a fileUpLoad
-		const file = new File([blob], 'Rem.png');
+		const file = new File([blob], 'Image.png');
 
 		const url = await fileUpLoad(file);
 
