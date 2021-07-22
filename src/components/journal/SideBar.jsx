@@ -31,7 +31,11 @@ const SideBar = () => {
 					</div>
 					<span>{name}</span>
 				</h3>
-				<button className="btn cursor" onClick={handleLogout}>
+				<button
+					className="btn cursor"
+					onClick={handleLogout}
+					id="handleLogout"
+				>
 					Logout
 				</button>
 			</div>
