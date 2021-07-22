@@ -27,7 +27,7 @@ const initState = {
 // el store contiene el objeto: auth
 let store = mockStore(initState);
 
-// - Debido a que LoginScreen emplea Redux debemos pasarle la creacion
+// - Debido a que RegisterScreen emplea Redux debemos pasarle la creacion
 //   de los stores mediante Provider y su propieadad store
 // - Debido a que se emplea la etiqueta Link se deben pasar las referencias
 //   a este componente mediante MemoryRouter, el cual hara de simulador de esta
@@ -68,5 +68,27 @@ describe('Pruebas en el componente RegisterScreen', () => {
 			type: types.uiSetError,
 			payload: 'The name can´t null',
 		});
+	});
+
+	test('debe de mostrar el mensaje de error', () => {
+		const initState = {
+			auth: {},
+			ui: { msgError: 'The name can´t null', loading: false },
+		};
+
+		const store = mockStore(initState);
+
+		const wrapper = mount(
+			<Provider store={store}>
+				<MemoryRouter>
+					<RegisterScreen />
+				</MemoryRouter>
+			</Provider>
+		);
+
+		expect(wrapper.find('.Form__valid-alert').exists()).toBe(true);
+		expect(wrapper.find('.Form__valid-alert').text()).toBe(
+			initState.ui.msgError
+		);
 	});
 });
