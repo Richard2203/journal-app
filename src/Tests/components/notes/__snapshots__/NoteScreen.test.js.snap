@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pruebas en el componente <NoteScreen/> debe renderizar correctamente el componente 1`] = `
+<div
+  className="notes__main-content"
+>
+  <div
+    className="notes__appbar"
+  >
+    <span>
+      28 de noviembre del 2050
+    </span>
+    <div>
+      <input
+        id="fileImage"
+        name="file"
+        onChange={[Function]}
+        style={
+          Object {
+            "display": "none",
+          }
+        }
+        type="file"
+      />
+      <button
+        className="btn cursor"
+        onClick={[Function]}
+      >
+        Borrar Nota
+      </button>
+      <button
+        className="btn cursor"
+        onClick={[Function]}
+      >
+        Picture
+      </button>
+      <button
+        className="btn cursor"
+        onClick={[Function]}
+      >
+        Save
+      </button>
+    </div>
+  </div>
+  <div
+    className="notes__content"
+  >
+    <div
+      className="form"
+    >
+      <div
+        className="form-control"
+      >
+        <input
+          autoComplete="off"
+          className="form-control__input"
+          id="title"
+          name="title"
+          onChange={[Function]}
+          placeholder=" "
+          type="text"
+          value="un titulo"
+        />
+        <label
+          className="form-control__label"
+          htmlFor="title"
+        >
+          Some Awesome title
+        </label>
+      </div>
+      <div
+        className="form-control"
+      >
+        <textarea
+          className="form-control__area"
+          id="body"
+          name="body"
+          onChange={[Function]}
+          placeholder=" "
+          style={
+            Object {
+              "height": "10rem",
+            }
+          }
+        />
+        <label
+          className="form-control__label-area"
+          htmlFor="body"
+        >
+          what happened today?
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
+`;
