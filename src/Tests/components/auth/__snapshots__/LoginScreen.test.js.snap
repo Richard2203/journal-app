@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pruebas en el componente LoginScreen Debe renderizar correctamente el componente 1`] = `
+Array [
+  <h3
+    className="auth__title"
+  >
+    Login
+  </h3>,
+  <form
+    onSubmit={[Function]}
+  >
+    <div
+      className="form-control"
+    >
+      <input
+        autoComplete="off"
+        className="form-control__input"
+        id="email"
+        name="email"
+        onChange={[Function]}
+        placeholder=" "
+        type="text"
+        value=""
+      />
+      <label
+        className="form-control__label"
+        htmlFor="email"
+      >
+        Email
+      </label>
+    </div>
+    <div
+      className="form-control"
+    >
+      <input
+        autoComplete="off"
+        className="form-control__input"
+        id="password"
+        name="password"
+        onChange={[Function]}
+        placeholder=" "
+        type="password"
+        value=""
+      />
+      <label
+        className="form-control__label"
+        htmlFor="password"
+      >
+        password
+      </label>
+    </div>
+    <button
+      className="btn cursor btn-block"
+      disabled={false}
+      type="submit"
+    >
+      Login
+    </button>
+  </form>,
+  <hr />,
+  <h6
+    className="auth__title-network"
+  >
+    Login with social Networks
+  </h6>,
+  <div
+    className="google-btn"
+    onClick={[Function]}
+  >
+    <div
+      className="google-icon-wrapper"
+    >
+      <img
+        alt="google button"
+        className="google-icon"
+        src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+      />
+    </div>
+    <p
+      className="btn-text"
+    >
+      <b>
+        Sign in with google
+      </b>
+    </p>
+  </div>,
+  <a
+    className="link"
+    href="/auth/register"
+    onClick={[Function]}
+  >
+    Create a new account
+  </a>,
+]
+`;
