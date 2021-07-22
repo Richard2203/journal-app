@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pruebas en el componente RegisterScreen debe de renderizarse correctamente 1`] = `
+Array [
+  <h3
+    className="auth__title"
+  >
+    Register
+  </h3>,
+  <form
+    onSubmit={[Function]}
+  >
+    <div
+      className="form-control"
+    >
+      <input
+        autoComplete="off"
+        className="form-control__input"
+        id="name"
+        name="name"
+        onChange={[Function]}
+        placeholder=" "
+        type="text"
+        value=""
+      />
+      <label
+        className="form-control__label"
+        htmlFor="name"
+      >
+        Name
+      </label>
+    </div>
+    <div
+      className="form-control"
+    >
+      <input
+        autoComplete="off"
+        className="form-control__input"
+        id="email"
+        name="email"
+        onChange={[Function]}
+        placeholder=" "
+        type="text"
+        value=""
+      />
+      <label
+        className="form-control__label"
+        htmlFor="email"
+      >
+        Email
+      </label>
+    </div>
+    <div
+      className="form-control"
+    >
+      <input
+        autoComplete="off"
+        className="form-control__input"
+        id="password"
+        name="password"
+        onChange={[Function]}
+        placeholder=" "
+        type="password"
+        value=""
+      />
+      <label
+        className="form-control__label"
+        htmlFor="password"
+      >
+        Password
+      </label>
+    </div>
+    <div
+      className="form-control"
+    >
+      <input
+        autoComplete="off"
+        className="form-control__input"
+        id="passwordConfirm"
+        name="passwordConfirm"
+        onChange={[Function]}
+        placeholder=" "
+        type="password"
+        value=""
+      />
+      <label
+        className="form-control__label"
+        htmlFor="password"
+      >
+        Confirm password
+      </label>
+    </div>
+    <button
+      className="btn cursor btn-block"
+      type="submit"
+    >
+      Login
+    </button>
+  </form>,
+  <hr />,
+  <a
+    className="link"
+    href="/auth/login"
+    onClick={[Function]}
+  >
+    Already Register?
+  </a>,
+]
+`;
